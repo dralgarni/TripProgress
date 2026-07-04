@@ -20,7 +20,7 @@ jobs:
             -sdk iphonesimulator \
             -configuration Debug \
             -derivedDataPath build/AppetizeDerivedData \
-            -destination 'generic/platform=iOS Simulator' \
+
             clean build
 
       - name: Package for Appetize
