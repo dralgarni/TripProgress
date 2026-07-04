@@ -16,7 +16,7 @@ jobs:
         run: |
           xcodebuild \
             -project TripProgress.xcodeproj \
-            -scheme TripProgress \
+            -target TripProgress \
             -sdk iphonesimulator \
             -configuration Debug \
             -derivedDataPath build/AppetizeDerivedData \
