@@ -8,11 +8,20 @@ workflows:
     scripts:
       - name: Build iOS Simulator app
         script: |
-          xcodebuild -project TripProgress.xcodeproj -target TripProgress -sdk iphonesimulator -configuration Debug -derivedDataPath build/AppetizeDerivedData CODE_SIGNING_ALLOWED=NO build
+          xcodebuild \
+            -project TripProgress.xcodeproj \
+            -target TripProgress \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            SYMROOT="$CM_BUILD_DIR/build" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
       - name: Package for Appetize
         script: |
           mkdir -p Appetize
-          cd build/AppetizeDerivedData/Build/Products/Debug-iphonesimulator
+          cd "$CM_BUILD_DIR/build/Debug-iphonesimulator"
           zip -qry "$CM_BUILD_DIR/Appetize/TripProgress-Appetize.zip" TripProgress.app
+
     artifacts:
       - Appetize/TripProgress-Appetize.zip
