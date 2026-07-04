@@ -6,19 +6,9 @@ workflows:
     environment:
       xcode: latest
     scripts:
-      - name: Show project info
-        script: |
-          xcodebuild -list -project TripProgress.xcodeproj
       - name: Build iOS Simulator app
         script: |
-          xcodebuild \
-            -project TripProgress.xcodeproj \
-            -scheme TripProgress \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            -derivedDataPath build/AppetizeDerivedData \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+          xcodebuild -project TripProgress.xcodeproj -target TripProgress -sdk iphonesimulator -configuration Debug -derivedDataPath build/AppetizeDerivedData CODE_SIGNING_ALLOWED=NO build
       - name: Package for Appetize
         script: |
           mkdir -p Appetize
